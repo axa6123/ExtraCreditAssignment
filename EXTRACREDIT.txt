@@ -1,0 +1,148 @@
+Exercise 1-1:
+    TRUE == 0 and FALSE == 1 is contrary to the conventions of C. not_eof
+    would be better named as is_eof, with its value set to TRUE in this
+    example.
+
+Exercise 1-2: 
+    // we don't need to comparte the reutnr value of strcmp function to make them more readible.
+    int lessequal(char *s, char *t)
+    {
+        return strcmp(s, t) <= 0;
+    }
+    
+Exercise 1-4:
+    1.  if(!(c == 'y' || c == 'Y'))
+            return;
+        
+    solution:
+        if (c != 'y' && c != 'Y')
+	        return;
+    
+    2.  length = (length < BUFSIZE) ? length : BUFSIZE;
+        
+    solution:
+        if(length > BUFSIZE)
+            length = BUFSIZE;
+    
+    3.  flag = flag ? 0 : 1;
+        
+    solution:
+        flag = !flag;
+
+    4.  quote = (*line == '"') ? 1 : 0;
+        
+    solution:
+        quote = (*line == '"');
+    
+    5.  if (val & 1)
+            bit = 1;
+        else
+            bit = 0;
+        
+    solution:
+        bit = val & 1;
+
+Exercise 1-5:
+    There is no guarantee which of val and ch will be read first.
+    also in the second line, it is missing & sign with ip variable as scanf always requires pointer.
+        scanf("%d" , ip); --> scanf("%d"U" , &ip); 
+
+Exercise 1-6:
+    n=1;
+    printf("%d %d\n", n++, n++);
+
+    solution: I tried three compilers, GCC 9.3.0 GIVES "2 1".
+    1 1
+    1 2
+    2 1
+
+Exercise 1-7:
+    1.  if (istty(stdin)) ;
+        else if (istty(stdout)) ;
+            else if (istty(stderr)) ;
+                else return(0) ;
+    
+    solution:
+        if (!istty(stdin) && !istty(stdout) && !istty(stderr))
+	        return 0;
+    
+    2.  if (retval != SUCCESS)
+            return ( r e t v a l ) ;
+        }
+        /a A1 1 went well ! a/
+        return SUCCESS;
+    
+    solution:
+        return retval;
+    
+    3.  for (k = 0; k++ < 5; x += dx)
+            scanf ("%lf" , &dx) ;
+    
+    solution:
+        for (k = 0; k < 5; k++) {
+	        scanf("%lf", &dx);
+	        x += dx;
+        }
+
+Exercise 1-8:
+    int count = 0;
+    while (count < total) {
+        count++;
+        if (this.getName(count) == nametable.userName()) {
+            return (true) ;
+        }
+    }
+    
+    solution:
+        The loop increment happens at the top of the loop, so the loop goes from 1 to total, not 0 to total-1.
+        The == operator checks equality of references, not string equality. The getName and userName methods presumably return strings.
+
+    for (int count = 0; count < total; count++) {
+        if (this.getName(count).equals(nametable.userName()))
+            return true;
+    }
+    
+
+Exercise 1-9:
+    #define ISDIGIT(c) ((c >= 'O') && (cc = '9')) ? 1 : 0
+
+    solution:
+        The entire macro body is not parenthesized. The macro argument c is not parenthesized. The macro argument c may be evaluated more than once. The ?: operator is superfluous.
+
+Exercise 1-10:
+    1.  void dict: :insert(string& w)
+        // returns 1 i f w i n dictionary, otherwise returns 0
+    solution:
+       The comment or the code must be incorrect because the method returns void and the function says it returns a number.
+
+    2. if (n > MAX I I n % 2 > 0) // t e s t f o r even number
+    solution:
+        The comment is incomplete; the code actually tests for a even number or a number that is greater than MAX.
+
+    3.  // Write a message
+        // Add t o l i n e counter for each l i n e written
+        void write_message()
+        {
+            // increment line counter
+            line-number = line-number + 1;
+            fprintf(fout, "%d %s\n%d %s\n%d %s\n",
+                line-number, HEADER,
+                line-number + 1, BODY,
+                line-number + 2, TRAILER);
+                // increment 1ine counter
+                line-number = 1 ine-number + 2;
+        }
+
+    solution:
+        The comment heading the function is fine. The other comments should refer to "line number" rather than "line counter" for consistency with the code and the header comment. The two identical comments "increment line counter" document two different things: increasing line_number by 1 and increasing it by 2. The comments should be different to note the difference. However, the function is better written.
+        void write_message()
+        {
+            fprintf(fout, "%d %s\n%d %s\n%d %s\n",
+                line_number + 1, HEADER,
+                line_number + 2, BODY,
+                line_number + 3, TRAILER);
+            line_number += 3;
+        }
+        and then no comments are necessary.
+
+ 
